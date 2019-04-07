@@ -1,0 +1,53 @@
+{
+  "name": "DeeDeeAuto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "semistandard",
+    "start:server": "pm2 start process.config.js",
+    "stop:server": "pm2 delete process.config.js",
+    "logs:server": "pm2 logs /api/ --lines 10",
+    "start:client": "react-scripts start",
+    "build:client": "react-scripts build",
+    "git:remote:set": "git remote set-url origin git@github.com:https:/.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MunajSyed/DeeDeeAuto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MunajSyed/DeeDeeAuto/issues"
+  },
+  "homepage": "https://github.com/MunajSyed/DeeDeeAuto#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "eslint": "^5.12.0",
+    "express": "^4.16.4",
+    "init-package-json": "^1.10.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-router-dom": "^5.0.0"
+  },
+  "devDependencies": {
+    "hackeryou-fullstack-react-scripts": "2.3.0",
+    "pm2": "^3.3.1",
+    "semistandard": "github:mikemimik/semistandard"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "proxy": "http://localhost:4000",
+  "semistandard": {
+    "ignore": [
+      "build/**"
+    ]
+  }
+}
