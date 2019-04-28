@@ -25,10 +25,13 @@
   },
   "homepage": "https://github.com/MunajSyed/DeeDeeAuto#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
-    "eslint": "^5.12.0",
     "express": "^4.16.4",
     "init-package-json": "^1.10.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^5.0.0"

@@ -2,6 +2,8 @@
 
 const express = require('express');
 const http = require('http');
+const mongoose = require('mongoose').set('debug', true);
+const bodyParser = require('body-parser');
 
 // 1. Create main express intance
 const router = express();
@@ -15,7 +17,9 @@ const middleWare = require('./middleware');
 const errorHandlers = require('./middleware/errorHandlers');
 
 // 4. Require routes
-const { router: bookRoutes } = require('./routes/books/bookRoutes');
+const { router: userRoutes } = require('./routes/users/userRoute');
+const { router: carRoutes } = require('./routes/cars/carRoute');
+const { router: dealerRoutes } = require('./routes/dealers/dealerRoute');
 
 // 5. Require conatants
 const { PORT } = require('./utils/constants');
@@ -24,7 +28,9 @@ const { PORT } = require('./utils/constants');
 applyMiddleware(middleWare, router);
 
 // 7. Utilise routes
-router.use('/api/books', bookRoutes);
+router.use('/api/users', userRoutes);
+router.use('/api/cars', carRoutes);
+router.use('/api/dealers', dealerRoutes);
 
 // 8. Apply error handling middleware (meaningfully last)
 applyMiddleware(errorHandlers, router);
@@ -33,10 +39,18 @@ applyMiddleware(errorHandlers, router);
 const server = http.createServer(router);
 
 // 10. Start server
-server.listen(PORT, () => {
-  console.log(`Server is running on PORT:${PORT}`);
-  if (process.send) {
-    // NOTE: process is being run by pm2
-    process.send('ready');
-  }
-});
+mongoose.connect('mongodb://localhost:27017/DeeDeeAutomotive', { useNewUrlParser: true })
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server is running on PORT:${PORT}`);
+      if (process.send) {
+        // NOTE: process is being run by pm2
+        process.send('ready');
+      }
+    })
+  })
+  .catch((err) => {
+    console.log(err);
+    throw err;
+  })
+
