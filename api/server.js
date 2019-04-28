@@ -28,10 +28,16 @@ const { PORT, URL } = require('./utils/constants');
 applyMiddleware(middleWare, router);
 
 // 7. Utilise routes
-router.use('/api/users', userRoutes);
-router.use('/api/cars', carRoutes);
-router.use('/api/dealers', dealerRoutes);
+//router.use('/api/users', userRoutes);
+//router.use('/api/cars', carRoutes);
+//router.use('/api/dealers', dealerRoutes);
 
+const publicFolder = path.resolve(__dirname, '..', 'build')
+router.use('/', express.static(publicFolder));
+router.use('*', (req,res,next) => {
+  const indexFile = path.resolve(publicFolder, 'index.html');
+  res.sendFile(indexFile);
+})
 // 8. Apply error handling middleware (meaningfully last)
 applyMiddleware(errorHandlers, router);
 
