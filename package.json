@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/MunajSyed/DeeDeeAuto/issues"
   },
-  "homepage": "https://github.com/MunajSyed/DeeDeeAuto#readme",
+  "homepage": "https://munaj-example.herokuapp.com/",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
