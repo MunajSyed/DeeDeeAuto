@@ -10,11 +10,11 @@ class Index extends React.Component {
     render(){
         return (
             <Router>
-                <Route path= {"/Home"} component={Home}/>
+                <Route path= {"/"} component={App}/>
             </Router>
         );
     }
-}
+} 
 
 ReactDOM.render(<Index />, document.getElementById('root'));
 
