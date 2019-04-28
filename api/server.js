@@ -31,12 +31,7 @@ applyMiddleware(middleWare, router);
 router.use('/api/users', userRoutes);
 router.use('/api/cars', carRoutes);
 router.use('/api/dealers', dealerRoutes);
-const publicFolder = path.resolve(__dirname, '..', 'build')
-router.use('/', express.static(publicFolder));
-router.use('*', (req,res,next) => {
-  const indexFile = path.resolve(publicFolder, 'index.html');
-  res.sendFile(indexFile);
-})
+
 // 8. Apply error handling middleware (meaningfully last)
 applyMiddleware(errorHandlers, router);
 
@@ -45,7 +40,7 @@ const server = http.createServer(router);
 
 // 10. Start server
 mongoose.connect(URL, { useNewUrlParser: true })
-  .then(() => {
+  .then(async () => {
     server.listen(PORT, () => {
       console.log(`Server is running on PORT:${PORT}`);
       if (process.send) {
