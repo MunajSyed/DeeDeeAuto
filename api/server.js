@@ -4,7 +4,7 @@ const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose').set('debug', true);
 const bodyParser = require('body-parser');
-
+const path = require('path');
 // 1. Create main express intance
 const router = express();
 
@@ -27,14 +27,15 @@ const { PORT, URL } = require('./utils/constants');
 // 6. Apply general middleware
 applyMiddleware(middleWare, router);
 
+const publicFolder = path.resolve(__dirname, '..', 'build')
+router.use('/', express.static(publicFolder));
+
 // 7. Utilise routes
 router.use('/api/users', userRoutes);
 router.use('/api/cars', carRoutes);
 router.use('/api/dealers', dealerRoutes);
 
-const publicFolder = path.resolve(__dirname, '..', 'build')
-router.use('/', express.static(publicFolder));
-router.use('*', (req,res,next) => {
+router.use('/*', (req,res,next) => {
   const indexFile = path.resolve(publicFolder, 'index.html');
   res.sendFile(indexFile);
 })
