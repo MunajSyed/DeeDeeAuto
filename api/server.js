@@ -22,7 +22,7 @@ const { router: carRoutes } = require('./routes/cars/carRoute');
 const { router: dealerRoutes } = require('./routes/dealers/dealerRoute');
 
 // 5. Require conatants
-const { PORT } = require('./utils/constants');
+const { PORT, URL } = require('./utils/constants');
 
 // 6. Apply general middleware
 applyMiddleware(middleWare, router);
@@ -44,7 +44,7 @@ applyMiddleware(errorHandlers, router);
 const server = http.createServer(router);
 
 // 10. Start server
-mongoose.connect('mongodb://localhost:27017/DeeDeeAutomotive', { useNewUrlParser: true })
+mongoose.connect(URL, { useNewUrlParser: true })
   .then(() => {
     server.listen(PORT, () => {
       console.log(`Server is running on PORT:${PORT}`);
