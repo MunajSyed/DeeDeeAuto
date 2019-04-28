@@ -14,7 +14,7 @@ class Index extends React.Component {
             </Router>
         );
     }
-}
+} 
 
 ReactDOM.render(<Index />, document.getElementById('root'));
 
