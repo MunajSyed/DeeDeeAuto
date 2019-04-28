@@ -11,7 +11,9 @@
     "logs:server": "pm2 logs /api/ --lines 10",
     "start:client": "react-scripts start",
     "build:client": "react-scripts build",
-    "git:remote:set": "git remote set-url origin git@github.com:https:/.git"
+    "git:remote:set": "git remote set-url origin git@github.com:https:/.git",
+    "deploy": "node api/server.js",
+    "build": "react-scripts build"
   },
   "repository": {
     "type": "git",

@@ -10,7 +10,7 @@ class Index extends React.Component {
     render(){
         return (
             <Router>
-                <Route path= {"/App"} component={App}/>
+                <Route path= {"/"} component={App}/>
             </Router>
         );
     }
