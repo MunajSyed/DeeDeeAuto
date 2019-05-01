@@ -1,21 +1,44 @@
-import React from "react";
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-export class Header extends React.Component {
-    render() {
-        return(
-            <nav className="navbar navbar-default">
-                <div className="container">
-                    <div className="navbar-header">
-                        <ul className="nav navbar-nav">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
+import {
+  AppBar,
+  Tabs,
+} from '@material-ui/core';
 
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        );
-    }
+class Header extends PureComponent {
+  render () {
+    const {
+      currentView,
+      tabs,
+      handleTabChange,
+    } = this.props;
+
+    return (
+      <AppBar position='static' color='default'>
+        <Tabs
+          value={currentView}
+          onChange={(event, value) => {
+            handleTabChange.call(this, event, value);
+          }}
+          indicatorColor='primary'
+          textColor='primary'
+          centered
+        >
+          {tabs}
+        </Tabs>
+      </AppBar>
+    );
+  }
 }
+
+Header.propTypes = {
+  currentView: PropTypes.string,
+  tabs: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]),
+  handleTabChange: PropTypes.func,
+};
 
 export default Header;

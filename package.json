@@ -27,9 +27,12 @@
   },
   "homepage": "https://munaj-example.herokuapp.com/",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "fast-redact": "^1.5.0",
     "init-package-json": "^1.10.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.3",

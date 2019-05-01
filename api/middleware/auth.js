@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 const mongoose = require('mongoose');
 const { Schema } = mongoose; // const Schema = mongoose.Schema;
@@ -23,7 +23,7 @@ const Users = mongoose.model('users', userSchema);
     type: Schema.Types.ObjectId,
     ref: 'users',
   }
-});*/
+});
 //const Comment = mongoose.model('comments', commentSchema);
 
 const url = 'mongodb://localhost:27017/DeeDeeAutomotive';
@@ -49,9 +49,37 @@ mongoose.connect(url, { useNewUrlParser: true })
     const commentDoc = await myComment.save();
 
     const comments = await Comment.find();
-    console.log(comments);*/
+    console.log(comments);
   })
   .catch((err) => {
     console.error(err);
     throw err;
-  });
+  });*/
+
+'use strict';
+
+const tokenService = require('../utils/tokenService');
+const { HTTP401Error } = require('../utils/httpErrors');
+
+module.exports = async (req, res, next) => {
+  const authHeader = req.get('Authorization');
+
+  if (!authHeader) {
+    next(new HTTP401Error());
+  } else {
+    try {
+      /* eslint-disable-next-line */
+      const [prefix, token] = authHeader.split(' ');
+      const decoded = await tokenService.verify(token);
+
+      if (decoded) {
+        req.token = decoded;
+        next();
+      } else {
+        next(new HTTP401Error());
+      }
+    } catch (e) {
+      next(e);
+    }
+  }
+};

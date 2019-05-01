@@ -1,6 +1,7 @@
 'use strict';
 const bcrypt = require('bcryptjs');
 const {model: userModel} = require('./userModel');
+const { HTTP401Error } = require('../../utils/httpErrors');
 
 exports.findUsers = async () => await userModel.find();
 
@@ -16,14 +17,27 @@ exports.createUsers = async (userData) => {
   }
 };
 
-exports.findUser = async (email) => {
-  console.log(email)
-  return await userModel.findOne({email});
+exports.findUser = async (_id) => {
+  return await userModel.findOne({_id});
 };
 
 exports.hash = async (password) => {
   const hash = await bcrypt.hash(password, 10);
   return hash;
+};
+exports.isUser = async ({ email, password }) => {
+  try {
+    const [user] = await userModel.find({ email });
+    if (user) {
+      const match = await user.comparePassword(password);
+      if (match) {
+        return user;
+      }
+    }
+    throw new HTTP401Error();
+  } catch (e) {
+    throw e;
+  }
 };
 
 //exports.findUser = async(email) => {

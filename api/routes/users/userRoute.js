@@ -2,8 +2,11 @@
 
 const express = require('express');
 const router = express.Router();
-const tokenService = require('./tokenService');
+const tokenService = require('../../utils/tokenService');
 const userService = require('./userService');
+const requiresAuth = require('../../middleware/auth');
+const { HTTP400Error, HTTP401Error } = require('../../utils/httpErrors');
+const { logRequest } = require('../../utils');
 
 router.route('/')
   .get(async (req, res, next) => {
@@ -16,7 +19,26 @@ router.route('/')
   });
 
 router.route('/login')
-  .post(async (req, res, next) => {
+.post(async (req, res, next) => {
+  try {
+    const user = await userService.isUser(req.body);
+    if (user) {
+      const token = await tokenService.issueToken(user);
+      res.status(200).json({
+        data: [{
+          token,
+        }],
+      });
+      logRequest(req, res);
+    } else {
+      next(new HTTP400Error());
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
+  /*.post(async (req, res, next) => {
     const { email, password } = req.body;
     try {
       const user = await userService.findUser( email);
@@ -37,7 +59,7 @@ router.route('/login')
     } catch (e) {
       next(e);
     }
-  })
+  })*/
 
 router.route('/signup')
   .post(async (req, res, next) => {
@@ -52,5 +74,26 @@ router.route('/signup')
       next(e);
     }
   });
+
+  router.route('/me')
+  .get(
+    requiresAuth,
+    async (req, res, next) => {
+      try {
+        console.log(req.token)
+        const { user: { id: userId } } = req.token;
+        const user = await userService.findUser(userId);
+
+        if (!user) {
+          next(new HTTP401Error());
+        } else {
+          res.status(200).json({ data: [user] });
+          logRequest(req, res);
+        }
+      } catch (e) {
+        next(e);
+      }
+    }
+  );
 
 exports.router = router;
