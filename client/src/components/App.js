@@ -26,7 +26,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import { getToken } from '../services/tokenService';
+import { getToken, removeToken } from '../services/tokenService';
 
 import Login from './Login';
 import About from './About';
@@ -51,6 +51,7 @@ class App extends Component {
         const { data } = await response.json();
         const [user] = data;
         this.setState({ user });
+        console.log(token)
       } catch (e) {
         console.error('error:', e);
       }
@@ -97,6 +98,12 @@ class App extends Component {
               (this.state.user)
                 ? (<Contact {...renderProps} />)
                 : (<Redirect to='/login' />)
+            )}
+          />
+          <Route
+            exact path='/logout'
+            render={() => (
+               (removeToken())
             )}
           />
         </Switch>

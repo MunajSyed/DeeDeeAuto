@@ -6,11 +6,9 @@ const bcrypt = require('bcryptjs');
 const userSchema = exports.schema = new Schema({
   firstName: {
     type: String,
-    required: true,
   },
   lastName: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -26,7 +24,6 @@ const userSchema = exports.schema = new Schema({
   },
   createdBy: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,

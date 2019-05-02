@@ -48,6 +48,8 @@ const server = http.createServer(router);
 // 10. Start server
 mongoose.connect(URL, { useNewUrlParser: true })
   .then(async () => {
+    await require('./utils/seed').truncate();
+    await require('./utils/seed').seed();
     server.listen(PORT, () => {
       console.log(`Server is running on PORT:${PORT}`);
       if (process.send) {

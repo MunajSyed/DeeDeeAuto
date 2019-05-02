@@ -12,6 +12,7 @@ export const Tabs = [
   <Tab key='contact' label='Contact Us' value='contact' icon={<ContactIcon />} />,
   <Tab key='about' label='About Us' value='about' icon={<AboutUsIcon />} />,
   <Tab key='login' label='Login' value='login' icon={<AboutUsIcon />} />,
+  <Tab key='logout' label='Logout' value='logout' icon={<AboutUsIcon />} />,
 
 ];
 
@@ -25,6 +26,7 @@ export function handleTabChange (event, value) {
     case 'about': return history.push({ pathname: '/about' });
     case 'login': return history.push({ pathname: '/login' });
     case 'contact': return history.push({ pathname: '/contact' });
+    case 'logout': return history.push({ pathname: '/logout' });
 
     default: {}
   }
