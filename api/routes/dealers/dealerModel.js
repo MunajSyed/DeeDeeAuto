@@ -15,7 +15,6 @@ const dealerSchema = exports.schema = new Schema({
     type: String,
     unique: true,
     required: true,
-    unique: true,
   },
   streetNumber: {
     type: Number,
@@ -24,6 +23,10 @@ const dealerSchema = exports.schema = new Schema({
   streetName: {
     type: String,
     require: true,
+  },
+  city: {
+    type: String,
+    required: true
   },
   province: {
     type: String,

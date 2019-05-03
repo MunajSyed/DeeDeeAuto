@@ -68,36 +68,38 @@ class App extends Component {
     return (
       <Router>
         <Switch>
+        <Route
+            exact path='/'
+            render={(renderProps) => (
+              (<Redirect to='/cars' />)
+              )}
+          />
           <Route
             exact path='/login'
             render={(renderProps) => (
-              (this.state.user)
-                ? (<Redirect to='/cars' />)
-                : (<Login fetchUser={this.fetchUser} />)
+              //(this.state.user)
+               // ? (<Redirect to='/cars' />)
+                 (<Login fetchUser={this.fetchUser} />)
             )}
           />
           <Route
             exact path='/cars'
             render={(renderProps) => (
-              (this.state.user)
-                ? (<Dashboard {...renderProps} />)
-                : (<Redirect to='/login' />)
+                (<Dashboard {...renderProps} />)
             )}
           />
           <Route
             exact path='/about'
             render={(renderProps) => (
-              (this.state.user)
-                ? (<About {...renderProps} />)
-                : (<Redirect to='/login' />)
+               (<About {...renderProps} />)
             )}
           />
           <Route
             exact path='/contact'
             render={(renderProps) => (
-              (this.state.user)
-                ? (<Contact {...renderProps} />)
-                : (<Redirect to='/login' />)
+             // (this.state.user)
+                 (<Contact {...renderProps} />)
+                //: (<Redirect to='/login' />)
             )}
           />
           <Route

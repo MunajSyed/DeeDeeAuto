@@ -6,7 +6,7 @@ import {
   uniqBy,
 } from 'lodash';
 
-//import Cohorts from './cohort/Cohorts';
+import Cars from './Cars';
 import { Tabs, handleTabChange } from './Tabs';
 import Header from './Header';
 import Page from './Page';
@@ -18,26 +18,29 @@ const styles = (theme) => ({
 
 class Dashboard extends Component {
   state = {
-    cohorts: [],
-    cohortsById: {},
+    cars: [],
+    carsById: {},
   };
 
-  onFetchCohorts = (cohorts) => {
-    const cohortsById = cohorts.reduce((acc, cohort) => {
-      const { _id } = cohort;
-      return Object.assign({}, acc, { [_id]: cohort });
+  onFetchCars = (cars) => {
+
+    const carsById = cars.reduce((acc, car) => {
+      const { _id } = car;
+
+      return Object.assign({}, acc, { [_id]: car });
     }, {});
 
-    const currentCohorts = this.state.cohorts;
-    const nextCohorts = uniqBy([...currentCohorts, ...cohorts], '_id');
+    const currentCars = this.state.cars;
+    const nextCars = uniqBy([...currentCars, ...cars], '_id');
 
-    const currentCohortsById = this.state.cohortsById;
-    const nextCohortsById = Object.assign({}, currentCohortsById, cohortsById);
+    const currentCarsById = this.state.carsById;
+    const nextCarsById = Object.assign({}, currentCarsById, carsById);
 
     this.setState({
-      cohorts: nextCohorts,
-      cohortsById: nextCohortsById,
+      cars: nextCars,
+      carsById: nextCarsById,
     });
+
   }
 
   renderHeader = (props) => (
@@ -55,10 +58,10 @@ class Dashboard extends Component {
         {this.renderHeader(this.props)}
         <Page title='Cars'>
           {
-            /*<Cohorts
-            cohorts={this.state.cohorts}
-            onFetchCohorts={this.onFetchCohorts}
-          />*/} 
+            <Cars
+            cars={this.state.cars}
+            onFetchCars={this.onFetchCars}
+          />} 
         </Page>
       </>
     );

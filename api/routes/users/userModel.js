@@ -36,6 +36,20 @@ const userSchema = exports.schema = new Schema({
     type: Date,
   }
 });
+userSchema.pre('save', async function (next) {
+  const user = this;
+  if (user.isModified('password') || user.isNew) {
+    try {
+      const hash = await bcrypt.hash(user.password, 10);
+      user.password = hash;
+      return next();
+    } catch (e) {
+      return next(e);
+    }
+  } else {
+    return next();
+  }
+});
 userSchema.methods.comparePassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
