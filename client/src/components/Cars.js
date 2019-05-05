@@ -10,14 +10,9 @@ import {
     ListItemSecondaryAction,
     Avatar,
     Badge,
+    Grid,
     Typography,
 } from '@material-ui/core';
-import {
-    Folder as FolderIcon,
-    Person as PersonIcon,
-} from '@material-ui/icons';
-
-import { getToken } from '../services/tokenService';
 
 const styles = (theme) => ({
     margin: {
@@ -25,6 +20,7 @@ const styles = (theme) => ({
     },
     inline: {
         display: 'inline',
+        textAlign: 'left'
     },
 });
 
@@ -32,7 +28,6 @@ class Cars extends PureComponent {
     handleFetchCars = async () => {
         console.group('Cohorts::handleFetchCohorts');
         try {
-            const token = getToken();
             const response = await fetch('/api/cars');
             const cars = await response.json();
             console.log('cars:', cars.data);
@@ -56,37 +51,46 @@ class Cars extends PureComponent {
     render() {
         const { classes, cars } = this.props;
         return (
-            <List>
+            <List container spacing={80}>
                 {
                     cars.map((car) => {
                         console.log(cars)
                         return (
                             <ListItem
                             >
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <FolderIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
                                 <ListItemText
                                     disableTypography
                                     primary={
                                         <Typography variant='h4'>
-                                            {`${car.make + " " + car.model + " " + car.year}`}
+                                            <img src={car.image} alt="Logo" width={200} />
+
                                         </Typography>
                                     }
+                                />
+                                <ListItemText
+                                    disableTypography
                                     secondary={
                                         <React.Fragment>
-                                            <Typography component='span' className={classes.inline}>
-                                                {`${car.km + " km"}`}
+                                            <Typography variant='h4'>
+                                            <p>{`${car.make + " " + car.model + " " + car.year}`}</p>
                                             </Typography>
+                                            <Typography component='span' className={classes.inline}>
+                                                <p>{`${"Kilometers: " +car.km}`}</p>
+                                                <p>{`${"Color: " +car.color}`}</p>
+                                                <p>{`${"Transmission: " +car.transmission}`}</p>
+                                                <p>{`${"Gear Box: " +car.gearBox}`}</p>
+                                                <p>{`${"Condition: " +car.condition}`}</p>
+                                                <p>{`${"Body Type: " +car.bodyType}`}</p>
+
+                                            </Typography>
+
                                         </React.Fragment>
                                     }
                                 />
                                 <ListItemSecondaryAction>
-                                <Typography variant='h6'>
-                                                {`${"$" + car.price}`}
-                                            </Typography>
+                                    <Typography variant='h4'>
+                                        {`${"$" + car.price}`}
+                                    </Typography>
                                 </ListItemSecondaryAction>
                             </ListItem>
                         );

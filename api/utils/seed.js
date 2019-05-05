@@ -31,7 +31,7 @@ exports.seed = async () => {
 
         const carData = [
             {
-                image: "https://www.kijiji.ca/v-cars-trucks/cambridge/2010-audi-a5-coupe-2-0l-premium-low-113kms-auto-awd-cert/1422308513",
+                image: "https://i.ebayimg.com/00/s/NjQwWDQ4MA==/z/oZAAAOSww7NcwvDe/$_59.JPG",
                 make: "Audi",
                 year: 2010,
                 model: "A5",
@@ -47,7 +47,7 @@ exports.seed = async () => {
                 createdBy: "admin"
             },
             {
-                image: "https://www.kijiji.ca/v-cars-trucks/cambridge/2012-mercedes-benz-c-class-c-250-awd-certified/1429585414",
+                image: "https://i.ebayimg.com/00/s/NDgwWDM2MA==/z/w6kAAOSwZcZcxLNu/$_59.JPG",
                 make: "Mercedes Benz",
                 year: 2012,
                 model: "C-Class",
@@ -63,7 +63,7 @@ exports.seed = async () => {
                 createdBy: "admin"
             },
             {
-                image: "https://www.kijiji.ca/v-cars-trucks/cambridge/2008-bmw-3-series-328i-convertible-coupe-low-kms/1421990163",
+                image: "https://i.ebayimg.com/00/s/NDgwWDQ4MA==/z/u-kAAOSwcCJcwvDd/$_59.JPG",
                 make: "BMW",
                 year: 2008,
                 model: "3-Series",
@@ -79,7 +79,7 @@ exports.seed = async () => {
                 createdBy: "admin"
             },
             {
-                image: "https://www.kijiji.ca/v-cars-trucks/cambridge/2006-toyota-rav4-sport-suv-awd-certified/1429585401",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/06-08_Toyota_RAV4_Limited.jpg/280px-06-08_Toyota_RAV4_Limited.jpg",
                 make: "Toyota",
                 year: 2006,
                 model: "RAV4",
@@ -95,7 +95,7 @@ exports.seed = async () => {
                 createdBy: "admin"
             },
             {
-                image: "https://www.kijiji.ca/v-cars-trucks/cambridge/2013-scion-fr-s-manual-6speed-87kms-certified/1428497307",
+                image: "https://i.ebayimg.com/00/s/NDgwWDY0MA==/z/mpsAAOSw3GBcxLbJ/$_59.JPG",
                 make: "Scion",
                 year: 2013,
                 model: "Other",
@@ -111,7 +111,7 @@ exports.seed = async () => {
                 createdBy: "admin"
             },
             {
-                image: "https://www.kijiji.ca/v-cars-trucks/cambridge/2012-audi-a5-2-0l-premium-s-line-package-awd-auto-certified/1421617118",
+                image: "https://i.ebayimg.com/00/s/NDgwWDQ4MA==/z/HSwAAOSwpo5cwvDe/$_59.JPG",
                 make: "Audi",
                 year: 2012,
                 model: "A5",

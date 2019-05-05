@@ -26,6 +26,8 @@ class About extends PureComponent {
                     {
                         <Fragment>
                             <h1>DeeDee Automotive.</h1>
+                            <h4>{"A great dealership"}</h4>
+
                         </Fragment>
                     }
                 </Page>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import logo from '../assets/deedeelogo.png';
+import '../assets/App.css';
 
 import {
   uniqBy,
@@ -20,8 +22,11 @@ class Dashboard extends Component {
   state = {
     cars: [],
     carsById: {},
+    position: 0,
   };
-
+  componentDidMount (){
+   setTimeout(()=> this.setState({position: 1}), 3000)
+}
   onFetchCars = (cars) => {
 
     const carsById = cars.reduce((acc, car) => {
@@ -50,13 +55,28 @@ class Dashboard extends Component {
       tabs={Tabs}
       {...props}
     />
-  )
+  );
+
 
   render () {
+    console.log(this.state.position)
+    if(this.state.position === 0) {
+      return (
+        <>
+      <div className='App'>
+        <div className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />  
+        </div>
+
+      </div>
+        </>
+      );
+    }
+    else{
     return (
       <>
         {this.renderHeader(this.props)}
-        <Page title='Cars'>
+        <Page>
           {
             <Cars
             cars={this.state.cars}
@@ -66,6 +86,7 @@ class Dashboard extends Component {
       </>
     );
   }
+}
 }
 
 Dashboard.propTypes = {
