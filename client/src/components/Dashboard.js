@@ -22,6 +22,7 @@ class Dashboard extends Component {
     cars: [],
     carsById: {},
     position: 0,
+    status: false,
   };
   componentDidMount (){
    setTimeout(()=> this.setState({position: 1}), 3000)
