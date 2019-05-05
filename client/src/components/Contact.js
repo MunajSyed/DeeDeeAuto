@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 
 import { Tabs, handleTabChange } from './Tabs';
 import Header from './Header';

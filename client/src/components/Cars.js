@@ -6,11 +6,7 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemAvatar,
     ListItemSecondaryAction,
-    Avatar,
-    Badge,
-    Grid,
     Typography,
 } from '@material-ui/core';
 

@@ -6,7 +6,7 @@
   animation-timing-function: ease;
   animation-name: App-rotate ;
   animation-delay: 0.5s;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
   position: absolute;
   height: 40vmin;

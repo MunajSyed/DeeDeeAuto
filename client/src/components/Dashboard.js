@@ -12,7 +12,6 @@ import Cars from './Cars';
 import { Tabs, handleTabChange } from './Tabs';
 import Header from './Header';
 import Page from './Page';
-import About from './About';
 
 const styles = (theme) => ({
   root: {},
